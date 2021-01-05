@@ -19,19 +19,23 @@ class AuthenticationService {
   signOut() {
     localStorage.removeItem("user");
   }
-  // UserName = requestModel.Username, 
-  // Email = requestModel.Email,
-  // FirstName = requestModel.FirstName,
-  // LastName = requestModel.LastName,
-  // Balance = 0
-  // api/user/register
+  
   register = async(firstname, lastname, username, email, password) => {
-    return axios.post("localhost:5000/api/user/register", {
-      firstname,
-      lastname,
-      username,
-      email,
-      password
+    return axios({
+      method: "post",
+      url : "http://localhost:5000/api/user/register",
+      data: {
+        Username : username,
+        Email : email,
+        Password : password,
+        NewPassword : "",
+        FirstName : firstname,
+        LastName : lastname
+      },
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*"
+      }
     });
   }
 
